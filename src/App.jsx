@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom'
+import CoinDetail from './CoinDetail'
 
 function App() {
   const [marketData, setMarketData] = useState([])
@@ -35,6 +37,9 @@ function App() {
 
   return (
     <div className="App">
+      <Routes>
+      <Route path="/" element={
+        <>
       <h1 className="title">OKX 行情列表</h1>
       <input
         type="text"
@@ -58,7 +63,9 @@ function App() {
           <tbody>
             {filteredMarketData.map((item) => (
               <tr key={item.instId}>
-                <td className="pair">{item.instId}</td>
+                <td className="pair">
+                <Link to={`/coin/${item.instId}`}>{item.instId}</Link>
+                </td>
                 <td>{item.last}</td>
                 <td>{item.high24h}</td>
                 <td>{item.low24h}</td>
@@ -69,8 +76,12 @@ function App() {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+          </table>
+              </div>
+            </>
+          } />
+      <Route path="/coin/:instId" element={<CoinDetail />} />
+      </Routes>
     </div>
   )
 }
