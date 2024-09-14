@@ -66,3 +66,23 @@ h2 {
   color: #2c3e50;
   text-align: center;
 }
+
+.salary-input-container {
+  margin-top: 20px;
+}
+
+.salary-input-container input {
+  margin: 0 5px;
+  padding: 5px;
+  width: 100px;
+}
+
+.total-amount-display {
+  margin-top: 20px;
+}
+
+.total-amount-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4CAF50;
+}

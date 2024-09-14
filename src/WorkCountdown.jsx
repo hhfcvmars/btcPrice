@@ -10,6 +10,9 @@ export default function WorkCountdown() {
     month: '',
     day: ''
   });
+  const [dailySalary, setDailySalary] = useState('');
+  const [totalAmount, setTotalAmount] = useState(null);
+  const [remainingDays, setRemainingDays] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +20,19 @@ export default function WorkCountdown() {
       ...prevState,
       [name]: value
     }));
+  };
+
+  useEffect(() => {
+    if (remainingDays && dailySalary) {
+      const amount = remainingDays * parseFloat(dailySalary);
+      setTotalAmount(amount.toFixed(2));
+    } else {
+      setTotalAmount(null);
+    }
+  }, [remainingDays, dailySalary]);
+
+  const handleSalaryChange = (e) => {
+    setDailySalary(e.target.value);
   };
 
   useEffect(() => {
@@ -44,6 +60,7 @@ export default function WorkCountdown() {
           const minutes = Math.floor((totalSeconds % 3600) / 60);
           const seconds = totalSeconds % 60;
           setCountdown(`${days}天 ${hours}时 ${minutes}分 ${seconds}秒`);
+          setRemainingDays(days);
         }
       };
 
@@ -90,6 +107,22 @@ export default function WorkCountdown() {
         <div className="countdown-display">
           <h2>距离退休还有：</h2>
           <p className="countdown-value">{countdown}</p>
+        </div>
+      )}
+         <div className="salary-input-container">
+        <label>平均日薪：</label>
+        <input
+          type="number"
+          value={dailySalary}
+          onChange={handleSalaryChange}
+          placeholder="请输入日薪"
+        />
+        <span>元</span>
+      </div>
+      {totalAmount && (
+        <div className="total-amount-display">
+          <h2>预计总收入：</h2>
+          <p className="total-amount-value">{totalAmount} 元</p>
         </div>
       )}
     </div>
