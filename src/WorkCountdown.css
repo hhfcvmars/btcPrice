@@ -69,12 +69,14 @@ h2 {
 
 .salary-input-container {
   margin-top: 20px;
+  color: #333;
 }
 
 .salary-input-container input {
   margin: 0 5px;
   padding: 5px;
   width: 100px;
+
 }
 
 .total-amount-display {
@@ -85,4 +87,10 @@ h2 {
   font-size: 24px;
   font-weight: bold;
   color: #4CAF50;
+}
+
+.qr-code-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }

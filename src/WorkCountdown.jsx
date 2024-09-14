@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { differenceInYears, differenceInMonths, differenceInDays, addYears } from 'date-fns';
 import './WorkCountdown.css';
+import qrCode from './assets/code.png'; // 添加这行
 
 export default function WorkCountdown() {
   const [birthDate, setBirthDate] = useState(null);
@@ -125,6 +126,10 @@ export default function WorkCountdown() {
           <p className="total-amount-value">{totalAmount} 元</p>
         </div>
       )}
+       <div className="qr-code-container">
+        <img src= {qrCode} width={128} height={128}/>
+      </div>
+      <h2>长按二维码，进入小程序</h2>
     </div>
   );
 }
