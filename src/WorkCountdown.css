@@ -1,5 +1,5 @@
 .work-countdown {
-  max-width: 400px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px;
   background-color: #f0f0f0;
@@ -93,4 +93,18 @@ h2 {
   margin-top: 20px;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  input {
+    max-width: 60px;
+  }
 }
