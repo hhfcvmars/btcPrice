@@ -75,3 +75,11 @@
       font-size: 14px;
     }
   }
+
+  .increase {
+    color: #ff4136; /* 红色 */
+  }
+  
+  .decrease {
+    color: #2ecc40; /* 绿色 */
+  }

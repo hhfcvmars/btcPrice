@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>价格涨跌计算器</h1>
+      <h1 className='title'>价格涨跌计算器</h1>
       <input
         type="number"
         value={amount}
@@ -44,8 +44,8 @@ function App() {
             {calculatePrices().map(({ percent, increase, decrease }) => (
               <tr key={percent}>
                 <td>{percent}%</td>
-                <td>{increase}</td>
-                <td>{decrease}</td>
+                <td className='increase'>{increase}</td>
+                <td className='decrease'>{decrease}</td>
               </tr>
             ))}
           </tbody>
