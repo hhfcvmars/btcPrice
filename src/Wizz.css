@@ -15,7 +15,8 @@
   }
   
   .amount-input {
-    width: 400px;
+    width: 100%; /* 改为100%宽度 */
+    max-width: 800px; /* 保持最大宽度为400px */
     padding: 10px;
     font-size: 18px;
     margin-bottom: 20px;
@@ -38,7 +39,7 @@
   }
   
   th, td {
-    padding: 14px 40px;
+    padding: 14px 80px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
     color: #333;
@@ -64,7 +65,7 @@
     background-color: #f8f8f8;
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     .App {
       padding: 10px;
     }
@@ -74,9 +75,13 @@
     }
   
     th, td {
-      padding: 8px;
+      padding: 10px 30px;
       font-size: 14px;
     }
+    .amount-input {
+        font-size: 16px; /* 在小屏幕上稍微减小字体大小 */
+        padding: 8px; /* 在小屏幕上稍微减小内边距 */
+      }
   }
 
   .increase {
