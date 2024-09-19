@@ -6,10 +6,18 @@ import './CoinDetail.css'
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
 function CoinDetail() {
-  
+
+  var message = 'Wizz Wallet is installed!'
+  if (typeof window.wizz !== 'undefined') {
+    console.log('Wizz Wallet is installed!');
+  }else{
+    message = "Wizz Wallet is installed"
+  }
+
+
   return (
     <div>
-      <h1>Coin Detail</h1>
+      <h1>{message}</h1>
     </div>
   )
 }
