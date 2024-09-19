@@ -1,9 +1,39 @@
-import React, { useState } from 'react';
-import './Wizz.css'; // 确保创建并导入这个CSS文件
+import React, { useState, useContext, useEffect } from 'react';
+import './Wizz.css';
 import { Helmet } from 'react-helmet';
+import { LanguageContext } from './LanguageContext.jsx';
+import { translations } from './translations';
 
 function App() {
   const [amount, setAmount] = useState('');
+  const { language, setLanguage } = useContext(LanguageContext);
+  const t = translations[language];
+
+  useEffect(() => {
+    async function setDefaultLanguage() {
+      try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const ip = data.ip;
+        const isChina = await checkIfIpIsFromChina(ip);
+        setLanguage(isChina ? 'zh' : 'en');
+      } catch (error) {
+        console.error('Error setting default language:', error);
+      }
+    }
+    setDefaultLanguage();
+  }, [setLanguage]);
+
+  async function checkIfIpIsFromChina(ip) {
+    try {
+      const response = await fetch(`https://ipapi.co/${ip}/json/`);
+      const data = await response.json();
+      return data.country_code === 'CN';
+    } catch (error) {
+      console.error('Error checking IP location:', error);
+      return false;
+    }
+  }
 
   const calculatePrices = () => {
     const baseAmount = parseFloat(amount);
@@ -21,27 +51,39 @@ function App() {
     });
   };
 
-
   return (
     <div className="App">
       <Helmet>
-        <title>价格涨跌计算器</title>
+        <title>{t.title}</title>
       </Helmet>
-      <h1 className='title'>价格涨跌计算器</h1>
+
+      <div className="language-select-container">
+      <select 
+        value={language} 
+        onChange={(e) => setLanguage(e.target.value)}
+        className="language-select"
+      >
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
+      <h1 className='title'>{t.title}</h1>
       <input
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        placeholder="输入金额"
+        placeholder={t.inputPlaceholder}
         className="amount-input"
       />
+  
       <div className="table-container">
         <table>
           <thead>
             <tr>
-              <th>百分比</th>
-              <th>涨价</th>
-              <th>跌价</th>
+              <th>{t.percent}</th>
+              <th>{t.increase}</th>
+              <th>{t.decrease}</th>
             </tr>
           </thead>
           <tbody>
@@ -55,6 +97,9 @@ function App() {
           </tbody>
         </table>
       </div>
+
+  
+
     </div>
   );
 }
