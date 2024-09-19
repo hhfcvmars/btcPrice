@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Wizz.css'; // 确保创建并导入这个CSS文件
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [amount, setAmount] = useState('');
@@ -23,6 +24,9 @@ function App() {
 
   return (
     <div className="App">
+      <Helmet>
+        <title>价格涨跌计算器</title>
+      </Helmet>
       <h1 className='title'>价格涨跌计算器</h1>
       <input
         type="number"

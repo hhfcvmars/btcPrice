@@ -19,6 +19,7 @@
     "react-datepicker": "^7.3.0",
     "react-day-picker": "^9.0.9",
     "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
     "react-mobile-picker": "^1.0.1",
     "react-modern-calendar-datepicker": "^3.1.6",
     "react-rainbow-components": "^1.32.0",
