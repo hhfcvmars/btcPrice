@@ -9,7 +9,7 @@ function App() {
     const baseAmount = parseFloat(amount);
     if (isNaN(baseAmount)) return [];
 
-    return Array.from({ length: 30 }, (_, i) => {
+    return Array.from({ length: 100 }, (_, i) => {
       const percentage = (i + 1) / 100;
       const increase = baseAmount * (1 + percentage);
       const decrease = baseAmount * (1 - percentage);
